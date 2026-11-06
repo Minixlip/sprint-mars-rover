@@ -1,2 +1,3 @@
 node_modules
-ts-mars-rover/dist
+dist/ts-mars-rover/src/*
+dist/ts-mars-rover/src/index.js

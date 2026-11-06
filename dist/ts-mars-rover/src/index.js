@@ -1,2 +1,13 @@
 "use strict";
-console.log('hello world');
+Object.defineProperty(exports, "__esModule", { value: true });
+const parser_1 = require("./parser/parser");
+const plateau = (0, parser_1.parsePlateauSize)('5 5');
+const first_position = (0, parser_1.parsePosition)('1 2 N');
+const first_instructions = (0, parser_1.parseInstructions)('LMLMLMLMM');
+const second_position = (0, parser_1.parsePosition)('3 3 E');
+const second_instructions = (0, parser_1.parseInstructions)('MMRMMRMRRM');
+console.log(plateau);
+console.log(first_position);
+console.log(first_instructions);
+console.log(second_position);
+console.log(second_instructions);
