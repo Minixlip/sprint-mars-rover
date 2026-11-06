@@ -11,16 +11,20 @@ function isCompassDirection(value: string): value is CompassDirection {
   return value === 'N' || value === 'E' || value === 'S' || value === 'W';
 }
 
-function parseCoordinate(value: string): number {
+// parses coordinates
+export function parseCoordinate(value: string): number {
   const coordinate = Number(value);
 
   if (!/^\d+$/.test(value) || !Number.isSafeInteger(coordinate)) {
-    throw new Error(`Invalid coordinate "${value}": expected a non-negative integer.`);
+    throw new Error(
+      `Invalid coordinate "${value}": expected a non-negative integer.`,
+    );
   }
 
   return coordinate;
 }
 
+// parses instructions
 export function parseInstructions(rawInstructions: string): Instruction[] {
   const characters = rawInstructions.trim().split('');
 
@@ -30,18 +34,23 @@ export function parseInstructions(rawInstructions: string): Instruction[] {
 
   return characters.map((character) => {
     if (!isInstruction(character)) {
-      throw new Error(`Invalid instruction "${character}": expected L, R, or M.`);
+      throw new Error(
+        `Invalid instruction "${character}": expected L, R, or M.`,
+      );
     }
 
     return character;
   });
 }
 
+// parses position
 export function parsePosition(rawPosition: string): Position {
   const parts = rawPosition.trim().split(/\s+/);
 
   if (parts.length !== 3) {
-    throw new Error('Position must contain two coordinates and a direction, e.g. "1 2 N".');
+    throw new Error(
+      'Position must contain two coordinates and a direction, e.g. "1 2 N".',
+    );
   }
 
   const [rawX, rawY, facing] = parts;
@@ -53,6 +62,7 @@ export function parsePosition(rawPosition: string): Position {
   return { x: parseCoordinate(rawX), y: parseCoordinate(rawY), facing };
 }
 
+// parses plateau size
 export function parsePlateauSize(rawPlateauSize: string): PlateauSize {
   const parts = rawPlateauSize.trim().split(/\s+/);
 
